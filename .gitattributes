@@ -1,0 +1,25 @@
+# This vault syncs between macOS and Windows. Normalize every text file to LF —
+# in the repo and on checkout — so line endings cannot ping-pong per machine.
+# core.autocrlf is false, so without this git stores whatever endings whichever
+# tool last wrote the file happened to use, and a one-line edit lands as a
+# whole-file diff that hides what actually changed.
+* text=auto eol=lf
+
+# Shell scripts must stay LF on every OS so they run under bash (macOS/Linux
+# and Git Bash on Windows). Overrides core.autocrlf, which would otherwise
+# convert them to CRLF on Windows checkout and break the shebang/parsing.
+# Covered by the rule above, but pinned explicitly so it survives any future
+# loosening of it.
+*.sh text eol=lf
+
+# Binaries — never normalize.
+*.pdf binary
+*.png binary
+
+# Template development plans are NOT part of the distributable template. They
+# describe stripping the source vault and name its owner throughout, so they
+# must never reach the exported repo. `export-ignore` makes `git archive` skip
+# them automatically, rather than relying on remembering to delete them first.
+#
+# RULE: any plan written to build the template itself gets a line here.
+.agents/plans/0-active/2026-08-28-onboard-command.md export-ignore

@@ -1,0 +1,50 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "-e",
+              "const d=new Date();const t=d.toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});process.stdout.write(JSON.stringify({suppressOutput:true,hookSpecificOutput:{hookEventName:'UserPromptSubmit',additionalContext:'[Time context] The user sent this message at '+t}}))"
+            ]
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/run-python.sh\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-start-context.py\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/run-python.sh\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/flush-to-daily.py\""
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/run-python.sh\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/flush-to-daily.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

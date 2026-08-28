@@ -1,0 +1,61 @@
+# Obsidian workspace files (machine-specific, don't commit)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Obsidian cache
+.obsidian/cache
+
+# Plugins: ignore plugin CODE (reinstallable) and, by default, plugin DATA too.
+#
+# data.json is opt-in per plugin, deliberately. A blanket `!**/data.json` looks
+# tidier but silently commits every plugin you ever install — including sync
+# plugins whose data.json holds account identifiers, folder caches, and
+# last-sync state. Allowlist the ones whose settings you actually want shared.
+.obsidian/plugins/**
+!.obsidian/plugins/**/
+!.obsidian/plugins/templater-obsidian/data.json
+!.obsidian/plugins/periodic-notes/data.json
+!.obsidian/plugins/obsidian-git/data.json
+!.obsidian/plugins/dataview/data.json
+!.obsidian/plugins/calendar/data.json
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+
+# Hook diagnostic logs (per-invocation, regenerated, never committed)
+.claude/hooks/*.log
+
+# Memory-reflect audit log (per-invocation, regenerated, never committed)
+.claude/scripts/*.log
+
+# Python bytecode cache (auto-generated on import, machine-specific)
+__pycache__/
+*.pyc
+
+# Node modules (if any local MCP servers)
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Ignore Smart Environment folder
+.smart-env
+
+# Claude Code machine-local settings. Per Claude Code convention this file is
+# per-machine (paths, local permission grants) and is NOT meant to be shared.
+# Anything that should apply on every machine belongs in settings.json instead.
+.claude/settings.local.json
+
+# External folder junctions (dev files linked into a project folder — the code
+# lives in its own repo, not here). Add the specific path when you create one:
+#   200 Projects/<project>/dev/
+
+# Playwright MCP browser artifacts (per-session console/page dumps, regenerated)
+.playwright-mcp/
